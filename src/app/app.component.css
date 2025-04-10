@@ -17,3 +17,30 @@ header {
   font-size: 20px;
   margin-right: 10px;
 }
+
+.lista_z_kropkami {
+  display: flex;  /* Flexbox */
+  flex-direction: column;  /* Układ pionowy */
+  justify-content: center;  /* Wyśrodkowanie w pionie */
+  align-items: center;  /* Wyśrodkowanie w poziomie */
+  height: 100vh;  /* Cała wysokość ekranu */
+}
+
+.lista_z_kropkami ul {
+  list-style-type: none;  /* Usunięcie punktów z listy */
+  padding: 0;
+  margin: 0;
+}
+
+.lista_z_kropkami ul li {
+  background-color: #f5f5f5;  /* Kolor tła dla karty */
+  border-radius: 10px;  /* Zaokrąglone rogi */
+  padding: 20px;
+  margin: 10px 0;  /* Przerwa między kartami */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Cień */
+  text-align: left;  /* Wyrównanie tekstu do lewej */
+  width: 300px;  /* Stała szerokość dla wszystkich kart */
+  max-width: 100%;  /* Aby karta nie była szersza niż szerokość ekranu */
+  box-sizing: border-box;  /* Uwzględnia padding i border w szerokości */
+  padding-left: 15px;  /* Margines od lewej, aby tekst nie był przyklejony do krawędzi */
+}

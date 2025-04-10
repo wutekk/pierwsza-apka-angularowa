@@ -1,14 +1,7 @@
 <h1>{{ title }}</h1>
+
 <div class="lista_z_kropkami">
-    <ul >
-        <li>Pierwszy element</li>
-        <li>Drugi element</li>
-        <li>Trzeci element</li>
+    <ul *ngFor="let item of lista_zakopow">
+        <li>{{ item }}</li>
     </ul>
 </div>
-
-<ul>
-    <li>Pierwszy element</li>
-    <li>Drugi element</li>
-    <li>Trzeci element</li>
-</ul>

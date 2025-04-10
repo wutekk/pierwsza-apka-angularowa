@@ -12,11 +12,6 @@ header {
 }
 
 
-.lista_z_kropkami ul li::before {
-  content: '🟪'; /*☑️*/
-  font-size: 20px;
-  margin-right: 10px;
-}
 
 .lista_z_kropkami {
   display: flex;  /* Flexbox */
@@ -43,4 +38,14 @@ header {
   max-width: 100%;  /* Aby karta nie była szersza niż szerokość ekranu */
   box-sizing: border-box;  /* Uwzględnia padding i border w szerokości */
   padding-left: 15px;  /* Margines od lewej, aby tekst nie był przyklejony do krawędzi */
+}
+
+h1 {
+  text-align: center;  /* Wyrównanie tekstu do lewej */
+}
+
+button {
+  margin: 0 100px;
+  padding: 1em;
+  color: blue;
 }

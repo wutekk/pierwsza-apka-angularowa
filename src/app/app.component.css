@@ -10,3 +10,10 @@ header {
 .content {
   padding: var(--content-padding);
 }
+
+
+.lista_z_kropkami ul li::before {
+  content: '🟪'; /*☑️*/
+  font-size: 20px;
+  margin-right: 10px;
+}

@@ -31,7 +31,7 @@ header {
   background-color: #f5f5f5;  /* Kolor tła dla karty */
   border-radius: 10px;  /* Zaokrąglone rogi */
   padding: 20px;
-  margin: 10px 0;  /* Przerwa między kartami */
+  margin: 5px 0;  /* Przerwa między kartami */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Cień */
   text-align: left;  /* Wyrównanie tekstu do lewej */
   width: 300px;  /* Stała szerokość dla wszystkich kart */
@@ -48,4 +48,5 @@ button {
   margin: 0 100px;
   padding: 1em;
   color: blue;
+  font-size: 17px;
 }

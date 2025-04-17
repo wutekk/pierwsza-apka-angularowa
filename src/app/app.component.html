@@ -1,11 +1,17 @@
 <h1>{{ title }}</h1>
 
 <button (click)="odwroc_zakupy()">Odwróć</button>
-
+<button (click)="usun_zaznaczone()">wyczyść</button>
 <div class="lista_z_kropkami">
     <ul>
-        @for (item of lista_zakopow; track item) {
-        <li (click)="zaznacz(item)">{{ item }}</li>
+        @for (rzecz of lista_zakupow(); track rzecz; let i = $index) {
+        <li (click)="odwroc_zaznaczenie(i)">
+            @if (rzecz.zaznaczenie) {
+                ☑️{{ rzecz.nazwa }}
+            } @else {
+                🟪{{ rzecz.nazwa}}
+        }
+        </li>
         }
     </ul>
 </div>

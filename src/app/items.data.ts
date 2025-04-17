@@ -1,4 +1,4 @@
-export const LISTA_ZAKUPOW: string[] = [
+export const LISTA_ZAKUPOW_NAZWY: string[] = [
     'Mleko',
     'Chleb',
     'Masło',

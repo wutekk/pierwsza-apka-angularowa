@@ -11,6 +11,15 @@ header {
   padding: var(--content-padding);
 }
 
+  /* margin: kazdy; */
+  /* margin: gora_dol lewo_prawo; */
+  /* margin: gora dol lewo prawo; */
+  /* margin-top: gora; */
+  /* margin-bottom: dol; */
+  /* margin-left: lewo; */
+  /* margin-right: prawo; */
+
+
 .lista_z_kropkami {
   display: flex;  /* Flexbox */
   flex-direction: column;  /* Układ pionowy */
@@ -24,7 +33,7 @@ header {
 }
 
 .lista_z_kropkami ul li {
-  background-color: #f5f5f5;  /* Kolor tła dla karty */
+  background-color: #ffffff;  /* Kolor tła dla karty */
   border-radius: 10px;  /* Zaokrąglone rogi */
   padding: 20px;
   margin: 5px 0;  /* Przerwa między kartami */
@@ -38,11 +47,22 @@ header {
 
 h1 {
   text-align: center;  /* Wyrównanie tekstu do lewej */
+  margin-bottom: 0.5em;
 }
 
-button {
-  margin: 0 100px;
-  padding: 1em;
-  color: blue;
+.pudelko_z_batonami button {
+  margin: 0 1em;
+  padding: 0.7em;
+  color: rgb(0, 0, 0);
+  background-color: #c170ff;
   font-size: 17px;
+  border: 2px solid rgb(0, 147, 147);
+  border-radius: 10px;
+}
+
+.pudelko_z_batonami {
+  display: flex;
+  justify-content: center; /* wyśrodkowanie poziome */
+  align-items: center;     /* wyśrodkowanie pionowe */
+  margin-bottom: 0.5em;
 }

@@ -1,7 +1,11 @@
 <h1>{{ title }}</h1>
 
-<button (click)="odwroc_zakupy()">Odwróć</button>
-<button (click)="usun_zaznaczone()">wyczyść</button>
+<input [(ngModel)]="nowej_rzeczy_nazwa" placeholder="Nowy produkt" />
+<div class="pudelko_z_batonami">
+    <button (click)="odwroc_zakupy()">Odwróć</button>
+    <button (click)="usun_zaznaczone()">Wyczyść</button>
+    <button (click)="dodaj_zakup()">Dodaj</button>
+</div>
 <div class="lista_z_kropkami">
     <ul>
         @for (rzecz of lista_zakupow(); track rzecz; let i = $index) {
@@ -10,7 +14,7 @@
                 ☑️{{ rzecz.nazwa }}
             } @else {
                 🟪{{ rzecz.nazwa}}
-        }
+            }
         </li>
         }
     </ul>

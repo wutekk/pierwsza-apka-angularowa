@@ -1,9 +1,7 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StorageService } from './storage.service';
-import { LISTA_ZAKUPOW_NAZWY } from './items.data';
-import { Rzecz } from './types';
 import { FormsModule } from '@angular/forms';
+import { ZakupyService } from './services/zakupy.service';
 
 @Component({
   selector: 'app-root',
@@ -14,78 +12,35 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'Lista zakupów do zrobienia';
-  lista_zakupow;
-  nowej_rzeczy_nazwa: string = '';
-  input_pokazany: boolean = false;
+  nowej_rzeczy_nazwa = '';
+  input_pokazany = false;
 
-  
-  constructor(
-    private storageService: StorageService
-  ) {
-    const init_lista = this.storageService.load()
-    if(init_lista != null) {
-      this.lista_zakupow = signal(init_lista);
-    } else {
-      this.lista_zakupow = signal(
-        LISTA_ZAKUPOW_NAZWY.map(nazwa => ({ nazwa, zaznaczenie: false })));
-    }
-  }
+  constructor(public zakupyService: ZakupyService) {}
 
-  odwroc_zakupy(): void {
-    const stara = this.lista_zakupow();
-    const odwrocona: Rzecz[] = [];
-
-    for (let i = 0; i < stara.length; i++) {
-      odwrocona.push(stara[stara.length - 1 - i]);
-    }
-    this.lista_zakupow.set(odwrocona);
-    this.storageService.save(this.lista_zakupow())
-  }
-
-  odwroc_zaznaczenie(index: number): void {
-    const lista = this.lista_zakupow();
-    lista[index].zaznaczenie = !lista[index].zaznaczenie;
-    
-    this.lista_zakupow.set(lista);
-    this.storageService.save(this.lista_zakupow())
-  }
-
-  usun_zaznaczone(): void {
-    const lista = this.lista_zakupow();
-
-    const lista_pom: Rzecz[] = [];
-    for (let rzecz of lista) {
-      if (rzecz.zaznaczenie == false) {
-        lista_pom.push(rzecz);
-      }
-    }
-
-    this.lista_zakupow.set(lista_pom);
-    this.storageService.save(this.lista_zakupow())
+  get lista_zakupow() {
+    return this.zakupyService.getLista();
   }
 
   dodaj_zakup(): void {
-    this.nowej_rzeczy_nazwa = this.nowej_rzeczy_nazwa.trim();
-    if (this.nowej_rzeczy_nazwa.length == 0) {
-      return
-    }
-    const lista = this.lista_zakupow();
-
-    const nowa_rzecz: Rzecz = {
-      nazwa: this.nowej_rzeczy_nazwa,
-      zaznaczenie: false
-    }
-    lista.push(nowa_rzecz)
-
-    this.lista_zakupow.set(lista);
-    this.storageService.save(this.lista_zakupow())
-
-    this.input_pokazany = false;
+    this.zakupyService.dodajRzecz(this.nowej_rzeczy_nazwa);
     this.nowej_rzeczy_nazwa = '';
+    this.input_pokazany = false;
   }
 
   pokaz_input(): void {
     this.input_pokazany = true;
+  }
+
+  odwroc_zakupy(): void {
+    this.zakupyService.odwrocZakupy();
+  }
+
+  odwroc_zaznaczenie(i: number): void {
+    this.zakupyService.odwrocZaznaczenie(i);
+  }
+
+  usun_zaznaczone(): void {
+    this.zakupyService.usunZaznaczone();
   }
 }
 

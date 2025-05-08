@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Rzecz } from "./types";
+import { Rzecz } from "../types";
 
 const klucz = 'rzeczy';
 

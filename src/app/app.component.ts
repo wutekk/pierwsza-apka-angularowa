@@ -5,7 +5,6 @@ import { LISTA_ZAKUPOW_NAZWY } from './items.data';
 import { Rzecz } from './types';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +16,9 @@ export class AppComponent {
   title = 'Lista zakupów do zrobienia';
   lista_zakupow;
   nowej_rzeczy_nazwa: string = '';
+  input_pokazany: boolean = false;
 
+  
   constructor(
     private storageService: StorageService
   ) {
@@ -79,7 +80,12 @@ export class AppComponent {
     this.lista_zakupow.set(lista);
     this.storageService.save(this.lista_zakupow())
 
-    this.nowej_rzeczy_nazwa = ''
+    this.input_pokazany = false;
+    this.nowej_rzeczy_nazwa = '';
+  }
+
+  pokaz_input(): void {
+    this.input_pokazany = true;
   }
 }
 

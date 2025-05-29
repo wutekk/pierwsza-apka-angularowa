@@ -13,7 +13,7 @@
     </div>
     }
     <ul>
-        @for (rzecz of lista_zakupow(); track rzecz; let i = $index) {
+        @for (rzecz of lista_zakupow; track rzecz; let i = $index) {
         <li (click)="odwroc_zaznaczenie(i)">
             @if (rzecz.zaznaczenie) {
             ☑️{{ rzecz.nazwa }}

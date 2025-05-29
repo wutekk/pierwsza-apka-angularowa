@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ZakupyService } from '../../../services/zakupy.service';
+import { ZakupyService } from '../../services/zakupy.service';
 
 @Component({
   selector: 'app-folmularz-dodawania',

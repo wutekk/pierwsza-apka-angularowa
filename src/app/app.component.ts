@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ZakupyService } from './services/zakupy.service';
-import { FolmularzDodawaniaComponent } from "./components/formularz_dodawania/folmularz-dodawania/folmularz-dodawania.component";
+import { FolmularzDodawaniaComponent } from "./components/formularz_dodawania/folmularz-dodawania.component";
 
 @Component({
   selector: 'app-root',

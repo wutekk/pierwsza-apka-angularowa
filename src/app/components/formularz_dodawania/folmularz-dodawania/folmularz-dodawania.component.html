@@ -1,1 +1,10 @@
-<p>folmularz-dodawania works!</p>
+@if (input_pokazany) {
+<div class="formularz">
+    <input [(ngModel)]="nowej_rzeczy_nazwa" placeholder="Nowy produkt" />
+    <button (click)="dodaj_zakup()">Dodaj</button>
+</div>
+} @else {
+<div class="pudelko_z_batonami">
+    <button (click)="pokaz_input()">Nowy produkt</button>
+</div>
+}

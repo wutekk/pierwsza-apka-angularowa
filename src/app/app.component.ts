@@ -1,35 +1,22 @@
 import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ZakupyService } from './services/zakupy.service';
+import { FolmularzDodawaniaComponent } from "./components/formularz_dodawania/folmularz-dodawania/folmularz-dodawania.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FolmularzDodawaniaComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'Lista zakupów do zrobienia';
-  nowej_rzeczy_nazwa = '';
-  input_pokazany = false;
 
   constructor(public zakupyService: ZakupyService) {}
 
   get lista_zakupow() {
     return this.zakupyService.lista_zakupow;
-  }
-
-  dodaj_zakup(): void {
-    this.zakupyService.dodajRzecz(this.nowej_rzeczy_nazwa);
-
-    this.input_pokazany = false;
-    this.nowej_rzeczy_nazwa = '';
-  }
-
-  pokaz_input(): void {
-    this.input_pokazany = true;
   }
 
   odwroc_zakupy(): void {

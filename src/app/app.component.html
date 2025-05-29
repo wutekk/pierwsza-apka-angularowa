@@ -3,15 +3,9 @@
 <div class="pudelko_z_batonami">
     <button (click)="odwroc_zakupy()">Odwróć</button>
     <button (click)="usun_zaznaczone()">Usuń zaznaczone</button>
-    <button (click)="pokaz_input()">Nowy produkt</button>
 </div>
 <div class="lista_z_kropkami">
-    @if (input_pokazany) {
-    <div class="formularz">
-        <input [(ngModel)]="nowej_rzeczy_nazwa" placeholder="Nowy produkt" />
-        <button (click)="dodaj_zakup()">Dodaj</button>
-    </div>
-    }
+    <app-folmularz-dodawania></app-folmularz-dodawania>
     <ul>
         @for (rzecz of lista_zakupow; track rzecz; let i = $index) {
         <li (click)="odwroc_zaznaczenie(i)">

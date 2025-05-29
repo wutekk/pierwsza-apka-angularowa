@@ -18,13 +18,14 @@ export class AppComponent {
   constructor(public zakupyService: ZakupyService) {}
 
   get lista_zakupow() {
-    return this.zakupyService.getLista();
+    return this.zakupyService.lista_zakupow;
   }
 
   dodaj_zakup(): void {
     this.zakupyService.dodajRzecz(this.nowej_rzeczy_nazwa);
-    this.nowej_rzeczy_nazwa = '';
+
     this.input_pokazany = false;
+    this.nowej_rzeczy_nazwa = '';
   }
 
   pokaz_input(): void {

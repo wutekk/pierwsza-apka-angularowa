@@ -10,42 +10,63 @@ export class ZakupyService {
   constructor(private storage: StorageService) {
     const dane = this.storage.load();
     this.lista = signal(
-      dane ?? LISTA_ZAKUPOW_NAZWY.map(nazwa => ({ nazwa, zaznaczenie: false }))
+      dane ?? LISTA_ZAKUPOW_NAZWY.map(nazwa => ({ nazwa, zaznaczenie: false })) 
     );
   }
 
-  getLista() {
-    return this.lista;
+  get lista_zakupow() {
+    return this.lista();
+  }
+
+  set lista_zakupow(nowa_lista: Rzecz[]) {
+    this.lista.set(nowa_lista);
+    this.storage.save(this.lista());
   }
 
   odwrocZakupy(): void {
-    const odwrocona = [...this.lista()].reverse();
-    this.lista.set(odwrocona);
-    this.zapisz();
+    const stara = this.lista_zakupow;
+
+    const odwrocona: Rzecz[] = [];
+    for (let i = 0; i < stara.length; i++) {
+      odwrocona.push(stara[stara.length - 1 - i]);
+    }
+
+    this.lista_zakupow = odwrocona;
   }
 
   odwrocZaznaczenie(index: number): void {
-    const nowa = [...this.lista()];
-    nowa[index].zaznaczenie = !nowa[index].zaznaczenie;
-    this.lista.set(nowa);
-    this.zapisz();
+    const lista = this.lista_zakupow;
+
+    lista[index].zaznaczenie = !lista[index].zaznaczenie;
+
+    this.lista_zakupow = lista;
   }
 
   usunZaznaczone(): void {
-    const oczyszczona = this.lista().filter(r => !r.zaznaczenie);
-    this.lista.set(oczyszczona);
-    this.zapisz();
+    const lista_pom: Rzecz[] = [];
+    for (let rzecz of this.lista_zakupow) {
+      if (rzecz.zaznaczenie == false) {
+        lista_pom.push(rzecz);
+      }
+    }
+
+    this.lista_zakupow = lista_pom;
   }
 
-  dodajRzecz(nazwa: string): void {
-    const tekst = nazwa.trim();
-    if (!tekst) return;
-    const nowa = [...this.lista(), { nazwa: tekst, zaznaczenie: false }];
-    this.lista.set(nowa);
-    this.zapisz();
-  }
+  dodajRzecz(nowej_rzeczy_nazwa: string): void {
+    nowej_rzeczy_nazwa = nowej_rzeczy_nazwa.trim();
+    if (nowej_rzeczy_nazwa.length == 0) {
+      return
+    }
 
-  private zapisz(): void {
-    this.storage.save(this.lista());
+    const nowa_rzecz: Rzecz = {
+      nazwa: nowej_rzeczy_nazwa,
+      zaznaczenie: false
+    }
+
+    const lista = this.lista_zakupow;
+    lista.push(nowa_rzecz)
+
+    this.lista_zakupow = lista;
   }
 }

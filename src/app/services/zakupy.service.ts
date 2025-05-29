@@ -1,6 +1,5 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { StorageService } from './storage.service';
-import { LISTA_ZAKUPOW_NAZWY } from '../items.data';
 import { Rzecz } from '../types';
 
 @Injectable({ providedIn: 'root' })
@@ -8,10 +7,8 @@ export class ZakupyService {
   lista: WritableSignal<Rzecz[]>;
 
   constructor(private storage: StorageService) {
-    const dane = this.storage.load();
-    this.lista = signal(
-      dane ?? LISTA_ZAKUPOW_NAZWY.map(nazwa => ({ nazwa, zaznaczenie: false })) 
-    );
+    const dane_z_local_storage = this.storage.load();
+    this.lista = signal(dane_z_local_storage ?? []);
   }
 
   get lista_zakupow() {

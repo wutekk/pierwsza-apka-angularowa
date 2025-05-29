@@ -58,7 +58,8 @@ export class ZakupyService {
 
     const nowa_rzecz: Rzecz = {
       nazwa: nowej_rzeczy_nazwa,
-      zaznaczenie: false
+      zaznaczenie: false,
+      ilosc: 1
     }
 
     const lista = this.lista_zakupow;
@@ -66,4 +67,22 @@ export class ZakupyService {
 
     this.lista_zakupow = lista;
   }
+
+  zwiekszIlosc(index: number): void {
+    const lista = this.lista_zakupow
+
+    lista[index].ilosc += 1
+
+    this.lista_zakupow = lista;
+  }
+
+  zmniejszIlosc(index: number): void {
+    const lista = this.lista_zakupow
+
+    lista[index].ilosc -= 1
+
+    this.lista_zakupow = lista;
+  }
+
+
 }
